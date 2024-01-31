@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Camera from './Camera';
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
         >
           Learn React
         </a>
+        <Camera/>
       </header>
     </div>
   );
