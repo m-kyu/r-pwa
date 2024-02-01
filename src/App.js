@@ -6,8 +6,9 @@ import Camera from './Camera';
 function App() {
 
   useEffect(()=>{
-    console.log(Notification.permission);    
-    Notification.requestPermission().then();
+    if(Notification.permission != 'granted'){
+      Notification.requestPermission().then();
+    }    
   },[])
 
   function msg(){
@@ -35,7 +36,7 @@ function App() {
         >
           Learn React
         </a>
-        <Camera/>
+        
       </header>
     </div>
   );
