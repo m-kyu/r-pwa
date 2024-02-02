@@ -94,12 +94,18 @@ export function register(config) {
         })
         .then((subscribe)=>{
           document.getElementById('msg').onclick = async ()=>{
+              console.log('구독시작!');
+
               await fetch(domain + '/push/sendNoti',{
                 method:'post',
                 headers: {
                   'Content-type': 'application/json'
                 },
                 body:JSON.stringify({subscribe})
+              })
+              .then(res=>res.text())
+              .then(res=>{
+                console.log(res)
               });
           }
         })
