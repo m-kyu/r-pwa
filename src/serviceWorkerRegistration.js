@@ -46,7 +46,9 @@ export function register(config) {
 
     window.addEventListener('load', () => {
       const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
+      
       const domain = 'https://port-0-express-jvvy2blm4a51lv.sel5.cloudtype.app'
+      
       function urlBase64ToUint8Array(base64String) {
         var padding = '='.repeat((4 - base64String.length % 4) % 4);
         var base64 = (base64String + padding)
@@ -87,12 +89,13 @@ export function register(config) {
 
         // Add some additional logging to localhost, pointing developers to the
         // service worker/PWA documentation.
-        navigator.serviceWorker.ready.then((registration) => {
+        navigator.serviceWorker.ready
+        .then((registration)=>{
           return getSubscription(registration);
         })
         .then((subscribe)=>{
           document.getElementById('msg').onclick = async ()=>{
-              await fetch(domain+'/push/sendNoti',{
+              await fetch(domain + '/push/sendNoti',{
                 method:'post',
                 headers: {
                   'Content-type': 'application/json'
@@ -101,6 +104,7 @@ export function register(config) {
               });
           }
         })
+
       } else {
         // Is not localhost. Just register service worker
         registerValidSW(swUrl, config);
