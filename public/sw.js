@@ -1,21 +1,23 @@
 // sw.js
-self.addEventListener('install',(a)=>{
+self.addEventListener('install',(event)=>{
     console.log('설치완료')
+    event.waitUntil(self.skipWaiting());
 })
 
-self.addEventListener('activate',(a)=>{
-    console.log('서비스워커 동작 시작되고 있음...')
+self.addEventListener('activate',(event)=>{
+    event.waitUntil(self.clients.claim());
+    // console.log('서비스워커 동작 시작되고 있음...')
 })
 
 self.addEventListener('fetch',(a)=>{
     console.log('데이터 요청시 처리....')
 })
 
+self.addEventListener('push',(event)=>{
+   console.log('메세지가?....', event);
 
-self.addEventListener('message',(event)=>{
-   console.log('메세지가?....', event.data);
    const option = {
-    body: event.data.message,
+    body: 'sdfsdfsdfsdf',
     icon:'1.jpg',    /* 제목옆에 작은 원형이미지 */
     image:'2.jpg',  /* 내용썸네일 */
     badge:'3.jpg',

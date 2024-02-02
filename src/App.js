@@ -20,7 +20,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <button onClick={msg}>알림메세지</button>
+        <button id="msg">알림메세지</button>
 
 
 
