@@ -83,20 +83,29 @@ self.addEventListener('activate',(event)=>{
 
 self.addEventListener('push',(event)=>{
   console.log('메세지가?....', event);
-
-  const option = {
-   body: 'sdfsdfsdfsdf',
-   icon:'1.jpg',    /* 제목옆에 작은 원형이미지 */
-   image:'2.jpg',  /* 내용썸네일 */
-   badge:'3.jpg',
-   vibrate:[200,100,300],
-   actions:[
-       {action:'open', title:'자세히보기'},
-       {action:'close', title:'닫기'}
-   ]
-  }
-  
-  self.registration.showNotification('title', option);
+  event.waitUntil(
+    // Retrieve a list of the clients of this service worker.
+    self.clients.matchAll().then(function(clientList) {
+      // Check if there's at least one focused client.
+      var focused = clientList.some(function(client) {
+        return client.focused;
+      });
+          
+      const option = {
+      body: 'sdfsdfsdfsdf',
+      icon:'1.jpg',    /* 제목옆에 작은 원형이미지 */
+      image:'2.jpg',  /* 내용썸네일 */
+      badge:'3.jpg',
+      vibrate:[200,100,300],
+      actions:[
+          {action:'open', title:'자세히보기'},
+          {action:'close', title:'닫기'}
+      ]
+      }
+      
+      return self.registration.showNotification('title', option);
+    })
+  );
 })
 
 

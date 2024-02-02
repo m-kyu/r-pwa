@@ -48,7 +48,6 @@ export function register(config) {
       const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
       
       const domain = 'https://port-0-express-jvvy2blm4a51lv.sel5.cloudtype.app'
-      
       function urlBase64ToUint8Array(base64String) {
         var padding = '='.repeat((4 - base64String.length % 4) % 4);
         var base64 = (base64String + padding)
